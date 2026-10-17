@@ -1,0 +1,18 @@
+name: Sync Fork with upstream
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync upstream repository
+        uses: repo-sync/github-sync@v2
+        with:
+          source_repo: "HU-eun/campus-recruitment"
+          source_branch: "main"
+          destination_branch: "main"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
